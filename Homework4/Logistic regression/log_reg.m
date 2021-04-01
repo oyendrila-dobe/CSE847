@@ -35,3 +35,8 @@ title('Plot for MSE vs Training samples');
 ylabel('MSE');
 xlabel('No. of training samples');
 hold on;
+
+%[0.0703295222151991,0.0435749148885583,0.0335967805073312,0.0281404824341349,0.0189131153717001,0.0136565583387275]1e-5 1000
+
+%
+%

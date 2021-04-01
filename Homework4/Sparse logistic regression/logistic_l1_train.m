@@ -11,11 +11,13 @@ train_labels = data_az.y_train;
 par = [0, 0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 non_zero = zeros(length(par), 1);
 AUC_arr = zeros(length(par),1);
+error = zeros(length(par),1)
 k=1;
 for i = par
     [w, c] = LogisticR(train_data, train_labels, i, opts);
     non_zero(k) = nnz(w);
     y = data_az.X_test * w;
+    error(k) = norm(y - data_az.y_test)/height(y);
     [~,~,~,AUC_arr(k)] = perfcurve(data_az.y_test, y , 1);
     k = k+1;
 end
