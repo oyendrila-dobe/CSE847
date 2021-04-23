@@ -10,7 +10,6 @@ function [centers, total_sum] = kmeans(data, k)
     hold on
     plot(ax1,data(:,1),data(:,2),'o');
     plot(ax1,centers(:,1),centers(:,2),'o', 'MarkerFaceColor', 'red');
-    axis([0 500 0 500]);
     title(ax1,'Initial cluster centers')
     hold off
 
@@ -39,7 +38,7 @@ function [centers, total_sum] = kmeans(data, k)
             end
             cen_diff(lo) = ((new_centers(lo,1) - centers(lo,1))^2 + (new_centers(lo,2) - centers(lo,2))^2);
         end
-        if max(cen_diff) < 5
+        if max(cen_diff) < 1e-7
             break
         else
             centers = new_centers;
@@ -60,7 +59,6 @@ function [centers, total_sum] = kmeans(data, k)
     hold on
     plot(ax2,data(:,1),data(:,2),'o');
     plot(ax2,centers(:,1),centers(:,2),'o', 'MarkerFaceColor', 'red');
-    axis([0 500 0 500]);
     title(ax2,'Final cluster centers')
     hold off
 
@@ -68,15 +66,7 @@ function [centers, total_sum] = kmeans(data, k)
     ax3 = nexttile([2,2]);
     gscatter(ax3,data(:,1),data(:,2),cluster,hsv(5), '.');
     legend('Location','southeastoutside')
-    axis([0 500 0 500]);
     title(ax3,'Final clusters');
     return 
 
 end
-
-
-
-
-
-
-
